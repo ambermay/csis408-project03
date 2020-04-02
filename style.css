@@ -1,0 +1,15 @@
+/* CSS File for Pac-man game */
+body {
+	text-align: center; 
+	font-family: 'Roboto', 'sans-serif';
+	color: '#111'; 
+}
+
+canvas {
+	 background-color: black; 
+}
+
+#container h1 {
+	text-align: center; 
+	font-size: 36px; 
+}

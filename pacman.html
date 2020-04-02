@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drawing a Pacman</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    
+    <!-- Stylesheets -->
+    <link href="css/destyle.css" rel="stylesheet" />
+    <link href="css/pacmanStyle.css" rel="stylesheet" />
+    
+    <!-- Google Font(s) -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	
+    <script src="js/draw_grid.js"></script>
+	<script src="js/draw_pacman.js"></script>
+</head>
+<body>
+
+<div id="container">
+
+    <h1>Draw a Pac-man</h1>
+	
+	<canvas id="pacman" width = "400" height = "400"></canvas>
+	<script>
+		
+		var canvas = document.getElementById("pacman"); 
+		var context = canvas.getContext("2d"); 
+		// Concepts and code from Graeme Stuart of Introducing JavaScript Game Development
+		draw_grid(context);  
+		draw_pacman(context, 200, 200, 15, Math.random()); 
+		
+	</script>
+	
+	
+    
+        
+</div>   
+        
+</body>
+</html>
+
+<!--   
+
+<video autoplay loop id="video-background" muted plays-inline>
+    <source src="/video/.mp4">
+</video>    
