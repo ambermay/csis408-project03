@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drawing a Pacman</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    
+    <!-- Stylesheets -->
+    <link href="css/destyle.css" rel="stylesheet" />
+    <link href="css/pacmanStyle.css" rel="stylesheet" />
+    
+    <!-- Google Font(s) -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	
+	<!--JavaScript-->
+	<script src="js/drawing.js"></script>
+	<script src="js/animation.js"></script>
+	
+</head>
+<body>
+
+<div id="container">
+	
+	<h1>Pacman Animation</h1>
+	
+	<canvas id="pacman" width="500" height="500"></canvas>
+	
+	<script>
+		
+		// Concepts and codes from JavaScript 2D Game Development by Gaeme Stuart 
+		var context = document.getElementById("pacman").getContext("2d"); 
+		
+		context.strokeStyle = "white"; 
+		
+		context.lineWidth = 1.5; 
+		
+		let x = 0, y = context.canvas.height / 5, radius = 20; 
+		
+		let xspeed = 1.5, yspeed = 0, gravity = 0.1; 
+		
+		let mouth = 0; 
+		
+		function frame() {
+			
+			context.clearRect(0, 0, context.canvas.width, context.canvas.height); 
+			
+			draw(context); 
+			
+			update(); 
+		}
+		
+		function update() {
+			
+			x += xspeed; 
+			
+			y += yspeed; 
+			
+			yspeed += gravity; 
+			
+			if(y >= context.canvas.height - radius) {
+				
+				y = context.canvas.height -radius; 
+				
+			// add an extra radius
+					yspeed *= -0.6; 
+				
+			// reverse and slow down
+					xspeed *= 0.95; 
+				
+			// just slow down a bit
+			}
+			
+			if(x <= 0 || x >= context.canvas.width) {
+				
+				x = (x + context.canvas.width) % context.canvas.width; 
+				
+			}
+			
+			mouth = Math.abs(Math.sin(6 * Math.PI * x / (context.canvas.width))); 
+			
+		}
+		
+		function draw(ctx) {
+			
+			// draw a simple circle 
+			
+			draw_grid(ctx); 
+			
+			// draw a simple circle
+			
+			ctx.beginPath();
+			
+		//	ctx.arc(x, y, radius, 0, 2 * Math.PI); 
+			
+		//	ctx.fill(); 
+			
+		//	ctx.stroke(); 
+			
+			// or try this insead
+			
+			ctx.save(); 
+			
+		    ctx.translate(x, y); 
+			
+		    draw_pacman(ctx, radius, mouth); 
+			
+		    ctx.restore(); 
+			
+		}
+		
+		setInterval(frame, 1000.0/60.0); // 60 fps
+		
+	</script>
+ 
+</div>   
+        
+</body>
+</html>
+
+<!--   
+
+<video autoplay loop id="video-background" muted plays-inline>
+    <source src="/video/.mp4">
+</video>    
