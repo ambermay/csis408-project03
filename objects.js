@@ -32,44 +32,40 @@ PacMan.prototype.draw = function(ctx) {
 	ctx.restore(); 
 }
 
-PacMan.prototype.turn = function(direction) {
+PacMan.prototype.move_right = function() {
 	
-	if(this.y_speed) {
-		
-		// if we travelling vertically
-		
-		// set the horizontal speed and apply the direction
-		
-		this.x_speed = -direction * this.y_speed; 
-		
-		// clear the vertical speed and rotate
-		
-		this.y_speed = 0; 
-		
-		this.angle = this.x_speed > 0 ? 0 : Math.PI; 
-		
-	} else {
-		// if we are travelling horizontally 
-		// set the vertical speed and apply the direction 
-		
-		this.y_speed = direction * this.x_speed; 
-		
-		// clear the horizontal speed and rotate
-		
-		this.x_speed = 0; 
-		
-		this.angle = this.y_speed > 0 ? 0.5 * Math.PI : 1.5 * Math.PI; 
-	}
+	this.x_speed = this.speed; 
+	
+	this.y_speed = 0; 
+	
+	this.angle = 0; 
 }
 
-PacMan.prototype.turn_left = function() {
+PacMan.prototype.move_down = function() {
 	
-	this.turn(-1); 
+	this.x_speed = 0; 
+	
+	this.y_speed = this.speed; 
+	
+	this.angle = 0.5 * Math.PI; 
 }
 
-PacMan.prototype.turn_right = function() {
+PacMan.prototype.move_left = function() {
 	
-	this.turn(1); 
+	this.x_speed = -this.speed; 
+	
+	this.y_speed = 0; 
+	
+	this.angle = Math.PI; 
+}
+
+PacMan.prototype.move_up = function() {
+	
+	this.x_speed = 0; 
+	
+	this.y_speed = -this.speed; 
+	
+	this.angle = 1.5 * Math.PI; 
 }
 
 PacMan.prototype.update = function(elapsed, width, height) {
@@ -136,6 +132,7 @@ Ghost.prototype.draw = function(ctx) {
 	}); 
 	ctx.restore(); 
 }
+
 
 Ghost.prototype.update = function(target, elapsed) {
 	
